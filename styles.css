@@ -1,0 +1,109 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f6f8;
+    color: #333;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1e4620;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.search-box {
+    margin-bottom: 25px;
+}
+
+.search-box label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.search-row {
+    display: flex;
+    gap: 10px;
+}
+
+#search-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#search-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#search-btn:hover {
+    background-color: #1b5e20;
+}
+
+/* Response status messaging hooks */
+.info-msg {
+    padding: 12px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.error-msg {
+    padding: 12px;
+    background: #ffebee;
+    color: #c62828;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Dynamic Grid Elements Table design block */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f1f8e9;
+    color: #33691e;
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+.hidden {
+    display: none !important;
+}

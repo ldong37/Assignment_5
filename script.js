@@ -31,3 +31,58 @@ async function fetchTreeData(commonName) {
         tableBody.innerHTML = '';
         // Network Request Execution
         const response = await fetch(fullUrl);
+        // Explicit status code safety verification 
+        if (!response.ok) {
+            throw new Error(`Server returned a critical network error: ${response.status}`);
+        }
+        // Parse JSON output payload
+        const treeRecords = await response.json();
+        // Guard clause for missing or empty results
+        if (treeRecords.length === 0) {
+            updateStatus("No matching public records found. Try another tree type.", "error-msg");
+            return;
+        }
+        // Clear information messages and populate data rows
+        statusMessage.classList.add('hidden');
+        renderTableRows(treeRecords);
+        } catch (err) {
+        console.error("App Failure Trace:", err);
+        updateStatus(`Failed to pull data: ${err.message}`, "error-msg");
+    }
+}
+// Extract properties using modern JavaScript destructuring
+function renderTableRows(treeList) {
+    treeList.forEach(tree => {
+        // Safe properties destructuring with explicit fallbacks
+        const { 
+            common_name = "Unknown", 
+            botanical_name = "N/A", 
+            diameter_at_breast_height = "N/A", 
+            street = "Not listed", 
+            neighbourhood = "Not listed" 
+        } = tree;
+
+        // Construct HTML table row element
+        const tableRow = document.createElement('tr');
+        tableRow.innerHTML = `
+            <td><strong>${common_name}</strong></td>
+            <td><em>${botanical_name}</em></td>
+            <td>${diameter_at_breast_height} cm</td>
+            <td>${street}</td>
+            <td>${neighbourhood}</td>
+        `;
+        
+        tableBody.appendChild(tableRow);
+    });
+
+    // Reveal populated results grid
+    resultsTable.classList.remove('hidden');
+}
+
+// Centralized status visibility manager
+function updateStatus(message, styleClass) {
+    statusMessage.textContent = message;
+    statusMessage.className = styleClass; // swap text styling color definitions dynamically
+    statusMessage.classList.remove('hidden');
+    resultsTable.classList.add('hidden');
+}
